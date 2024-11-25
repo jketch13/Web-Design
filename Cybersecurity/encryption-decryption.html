@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encryption/Decryption Tool</title>
+</head>
+<body>
+<h1>Caesar Cipher</h1>
+<textarea id="inputText" placeholder="Enter text here..."></textarea><br>
+<button onclick="encrypt()">Encrypt</button>
+<button onclick="decrypt()">Decrypt</button><br>
+<textarea id="outputText" readonly></textarea>
+
+<script>
+    var shift = 3; // Shift for Caesar Cipher
+
+    function encrypt() {
+        var input = document.getElementById('inputText').value;
+        var output = '';
+        for (var i = 0; i < input.length; i++) {
+            var char = input.charCodeAt(i);
+            if (char >= 65 && char <= 90) {
+                output += String.fromCharCode((char - 65 + shift) % 26 + 65); // Uppercase
+            } else if (char >= 97 && char <= 122) {
+                output += String.fromCharCode((char - 97 + shift) % 26 + 97); // Lowercase
+            } else {
+                output += String.fromCharCode(char); // Non-alphabetic characters
+            }
+        }
+        document.getElementById('outputText').value = output;
+    }
+
+    function decrypt() {
+        var input = document.getElementById('inputText').value;
+        var output = '';
+        for (var i = 0; i < input.length; i++) {
+            var char = input.charCodeAt(i);
+            if (char >= 65 && char <= 90) {
+                output += String.fromCharCode((char - 65 - shift + 26) % 26 + 65); // Uppercase
+            } else if (char >= 97 && char <= 122) {
+                output += String.fromCharCode((char - 97 - shift + 26) % 26 + 97); // Lowercase
+            } else {
+                output += String.fromCharCode(char); // Non-alphabetic characters
+            }
+        }
+        document.getElementById('outputText').value = output;
+    }
+</script>
+</body>
+</html>

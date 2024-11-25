@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2FA App</title>
+    <script src="https://cdn.jsdelivr.net/npm/otplib@12"></script>
+</head>
+<body>
+<h1>Two-Factor Authentication</h1>
+<input type="text" id="token" placeholder="Enter 2FA Token"><br>
+<button onclick="verifyToken()">Verify Token</button>
+
+<script>
+    const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD'; // Replace with your secret key
+
+    function verifyToken() {
+        const token = document.getElementById('token').value;
+        const isValid = otplib.authenticator.check(token, secret);
+        alert(isValid ? 'Token is valid' : 'Token is invalid');
+    }
+</script>
+</body>
+</html>
